@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Enums\Status;
+use App\Models\Client;
+use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +20,8 @@ class SaleFactory extends Factory
     public function definition(): array
     {
         return [
-            'client_id' => fake()->numberBetween(1,100),
-            'seller_id' => fake()->numberBetween(1,100),
+            'client_id' => Client::factory(),
+            'seller_id' => Seller::factory(),
             'sold_at' => fake()->dateTimeBetween('-8 year', 'now'),
             'total_amount' => fake()->numberBetween(10000,500000),
             'status' => fake()->randomElement(Status::cases()),
